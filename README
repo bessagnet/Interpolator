@@ -1,0 +1,22 @@
+#
+'interpolation.F90' is a generalized subroutine to make a linear interpolation
+of a look-up table dimension "ndim" : [:,:,....,:].
+The most important is to pass your look-up table in a one dimension array
+in your main program as :
+
+np=1
+do Nk=1,NDIM(k)
+   do Nk-1=1,NDIM(k-1)
+      .................................
+                           do N1=1,NDIM(1)
+                              table1D(np)=tablekD(N1,...Nk-1,Nk)
+                              np=np+1
+                           enddo
+      .................................
+   enddo
+enddo
+
+'example.F90' is an example of a main program calling 'interpolation.F90' for the
+case ndim=2.
+
+'compile_and_run.sh' compiles and runs the program (ifort is the default compiler).
